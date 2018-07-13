@@ -4,4 +4,7 @@
 
     <string name="no_data">The list is empty</string>
     <string name="network_error">Something went wrong</string>
+
+    <!-- Projects -->
+    <string name="project_item_created">Created: %s</string>
 </resources>

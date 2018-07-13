@@ -28,7 +28,7 @@ class ProjectsListInteractorTest {
     @InjectMocks private lateinit var interactor: ProjectsListInteractorImpl
 
     @Test
-    fun isRequestShowsEmptyList() {
+    fun isRequestFinishedWithoutErrors() {
         mockNetwork(ProjectResponse("", ArrayList()))
 
         val subscriber = TestSubscriber.create<ProjectResponse>()

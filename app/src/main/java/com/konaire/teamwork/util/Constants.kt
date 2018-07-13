@@ -6,5 +6,6 @@ package com.konaire.teamwork.util
 class Constants {
     companion object {
         const val BASE_URL = "https://yat.teamwork.com"
+        const val API_TOKEN = "twp_k9ejP88LcuojHjmFkUFuYIUNYalg"
     }
 }

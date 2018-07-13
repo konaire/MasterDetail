@@ -1,5 +1,7 @@
 package com.konaire.teamwork.di.network
 
+import android.util.Base64
+
 import com.google.gson.GsonBuilder
 
 import com.konaire.teamwork.BuildConfig
@@ -36,10 +38,16 @@ class NetworkModule {
         builder.readTimeout(30, TimeUnit.SECONDS)
 
         val loggingLevel = if (BuildConfig.DEBUG) Level.BODY else Level.NONE
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = loggingLevel
+        val loggingInterceptor = HttpLoggingInterceptor()
+        loggingInterceptor.level = loggingLevel
+        builder.addInterceptor { chain ->
+            val request = chain.request().newBuilder()
+            val userpassword = Base64.encodeToString("${Constants.API_TOKEN}:xxx".toByteArray(), Base64.DEFAULT).trim()
+            request.addHeader("Authorization", "BASIC $userpassword")
+            chain.proceed(request.build())
+        }
 
-        builder.addInterceptor(interceptor)
+        builder.addInterceptor(loggingInterceptor)
 
         return builder.build()
     }

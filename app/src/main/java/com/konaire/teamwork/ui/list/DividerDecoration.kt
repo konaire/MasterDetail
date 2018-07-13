@@ -16,7 +16,7 @@ class DividerDecoration(
     context: Context,
     private val leftPadding: Int = 0,
     colorResource: Int = android.R.color.darker_gray,
-    private val includeLastItem: Boolean = false
+    private val includeLastItem: Boolean = true
 ): RecyclerView.ItemDecoration() {
     private val paint: Paint
 
