@@ -69,8 +69,8 @@ class ProjectsListFragment: BaseFragment(), ProjectsListView {
         presenter.getProjects()
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onStop() {
+        super.onStop()
         presenter.stopSubscriptions()
     }
 

@@ -4,6 +4,7 @@
     <dimen name="small_indent">4dp</dimen>
 
     <dimen name="divider_size">1dp</dimen>
+    <dimen name="circle_size">8dp</dimen>
 
     <dimen name="big_text_size">18sp</dimen>
     <dimen name="default_text_size">16sp</dimen>

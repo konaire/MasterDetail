@@ -64,8 +64,8 @@ class ProjectDetailFragment: BaseFragment(), ProjectDetailView {
         presenter.getProject(project.id)
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onStop() {
+        super.onStop()
         presenter.stopSubscriptions()
     }
 
@@ -91,11 +91,28 @@ class ProjectDetailFragment: BaseFragment(), ProjectDetailView {
 
         name.text = project.name
         company.text = project.company.name
+        circle.setImageResource(if (project.status == Project.Status.ACTIVE.toLowerCase()) R.drawable.ic_circle_green else R.drawable.ic_circle_red)
         star.setImageResource(if (project.starred) R.drawable.ic_star_filled else R.drawable.ic_star_border)
 
         createdDate.text = project.formattedCreatedDate()
         dateRange.text = getString(R.string.project_date_range, project.formattedStartDate(), project.formattedEndDate())
         tags.text = project.formattedTags()
         description.text = project.description
+
+        if (tags.text.isNotEmpty()) {
+            tagsTitle.visibility = View.VISIBLE
+            tags.visibility = View.VISIBLE
+        } else {
+            tagsTitle.visibility = View.GONE
+            tags.visibility = View.GONE
+        }
+
+        if (description.text.isNotEmpty()) {
+            descriptionTitle.visibility = View.VISIBLE
+            description.visibility = View.VISIBLE
+        } else {
+            descriptionTitle.visibility = View.GONE
+            description.visibility = View.GONE
+        }
     }
 }

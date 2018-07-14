@@ -22,6 +22,7 @@ data class Project(
     @SerializedName("id") val id: Long = 0L,
     @SerializedName("name") val name: String = "",
     @SerializedName("description") val description: String = "",
+    @SerializedName("status") val status: String = "",
     @SerializedName("created-on") private val createdDate: String = "",
     @SerializedName("startDate") private val startDate: String = "",
     @SerializedName("endDate") private val endDate: String = "",
@@ -44,6 +45,7 @@ data class Project(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
+        parcel.readString(),
         parcel.readInt() != 0,
         parcel.readParcelable(Company.CREATOR::class.java.classLoader),
         parcel.createTypedArrayList(Tag.CREATOR)
@@ -53,6 +55,7 @@ data class Project(
         parcel?.writeLong(id)
         parcel?.writeString(name)
         parcel?.writeString(description)
+        parcel?.writeString(status)
         parcel?.writeString(createdDate)
         parcel?.writeString(startDate)
         parcel?.writeString(endDate)
@@ -81,17 +84,26 @@ data class Project(
             separator = " "
         }
 
-        var lastIndex = -1
+        var lastIndex = 0
         val spannable = SpannableString(builder.toString())
         for (tag in tags) {
-            lastIndex++
             spannable.setSpan(
                 BackgroundColorSpan(Color.parseColor(tag.color)),
-                lastIndex, tag.name.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                lastIndex, lastIndex + tag.name.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
+
+            lastIndex += tag.name.length + 1
         }
 
         return spannable
+    }
+
+    class Status {
+        companion object {
+            const val ALL = "ALL"
+            const val ACTIVE = "ACTIVE"
+            const val ARCHIVED = "ARCHIVED"
+        }
     }
 }
 

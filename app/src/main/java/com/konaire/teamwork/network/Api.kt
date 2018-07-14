@@ -1,5 +1,6 @@
 package com.konaire.teamwork.network
 
+import com.konaire.teamwork.models.Project
 import com.konaire.teamwork.models.ProjectResponse
 import com.konaire.teamwork.models.ProjectsResponse
 
@@ -14,7 +15,7 @@ import retrofit2.http.Query
  */
 interface Api {
     @GET("projects.json")
-    fun getProjects(@Query("status") status: String = "ALL"): Single<ProjectsResponse>
+    fun getProjects(@Query("status") status: String = Project.Status.ALL): Single<ProjectsResponse>
 
     @GET("projects/{id}.json")
     fun getProject(

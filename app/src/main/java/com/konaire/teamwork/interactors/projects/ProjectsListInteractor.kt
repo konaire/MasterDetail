@@ -7,6 +7,8 @@ import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 
+import java.util.Collections
+
 import javax.inject.Inject
 
 /**
@@ -21,5 +23,8 @@ interface ProjectsListInteractor {
 class ProjectsListInteractorImpl @Inject constructor(
     private val api: Api
 ): ProjectsListInteractor {
-    override fun getProjects(uiScheduler: Scheduler): Single<ProjectsResponse> = api.getProjects().observeOn(uiScheduler)
+    override fun getProjects(uiScheduler: Scheduler): Single<ProjectsResponse> = api.getProjects().map { response ->
+        Collections.sort(response.projects, compareBy { it.status })
+        response
+    }.observeOn(uiScheduler)
 }

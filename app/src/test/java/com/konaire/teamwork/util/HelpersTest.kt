@@ -8,17 +8,22 @@ import org.junit.Test
  */
 class HelpersTest {
     @Test
-    fun isApiGivenCorrectDate() {
+    fun doesApiGiveCorrectDateForShortFormat() {
+        assertEquals("23/04/2018", "20180423".formatAsDate(false))
+    }
+
+    @Test
+    fun doesApiGiveCorrectDateForFullFormat() {
         assertEquals("23/04/2018", "2018-04-23T09:53:30Z".formatAsDate(true))
     }
 
     @Test
-    fun isTimezoneMattered() {
+    fun doesTimezoneMatter() {
         assertEquals("24/04/2018", "2018-04-23T23:53:30Z".formatAsDate(true))
     }
 
     @Test
-    fun isAnotherGeneralFormattedDateWorked() {
+    fun doesAnotherGeneralFormattedDateWork() {
         assertEquals("23/04/2018", "2018-04-23T22:53:30GMT+02:00".formatAsDate(true))
     }
 }

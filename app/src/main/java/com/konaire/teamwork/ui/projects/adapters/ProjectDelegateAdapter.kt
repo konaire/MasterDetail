@@ -28,10 +28,12 @@ class ProjectDelegateAdapter(
     ): RecyclerView.ViewHolder(rootView) {
         fun bind(project: Project)  = with(itemView) {
             val image = findViewById<ImageView>(R.id.image)
+            val circle = findViewById<ImageView>(R.id.circle)
             val name = findViewById<TextView>(R.id.name)
             val description = findViewById<TextView>(R.id.description)
 
             Glide.with(this).load(project.logo).apply(RequestOptions().placeholder(android.R.color.darker_gray)).into(image)
+            circle.setImageResource(if (project.status == Project.Status.ACTIVE.toLowerCase()) R.drawable.ic_circle_green else R.drawable.ic_circle_red)
 
             name.text = project.name
             description.text = project.description

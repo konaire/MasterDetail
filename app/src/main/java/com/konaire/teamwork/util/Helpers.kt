@@ -25,7 +25,7 @@ fun String.formatAsDate(fromFullFormat: Boolean): String = try {
     val date = inf.parse(this.replace("Z", "UTC"))
     datef.format(date)
 } catch (e: Exception) {
-    ""
+    "..."
 }
 
 fun Context.toast(message: CharSequence) = Toast.makeText(this, message, Toast.LENGTH_LONG).show()
