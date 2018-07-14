@@ -3,7 +3,6 @@ package com.konaire.teamwork.ui.projects
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -62,6 +61,8 @@ class ProjectsListFragment: BaseFragment(), ProjectsListView {
         list.adapter = adapter
         list.layoutManager = LinearLayoutManager(activity)
         list.addItemDecoration(DividerDecoration(activity!!))
+        list.setHasFixedSize(true)
+
         swipe.setOnRefreshListener { presenter.getProjects() }
         emptyView?.visibility = if (adapter!!.isNotEmpty()) View.GONE else View.VISIBLE
 
@@ -96,7 +97,6 @@ class ProjectsListFragment: BaseFragment(), ProjectsListView {
         }
     }
 
-    override fun onItemClicked(item: Project, view: View?) {
-        Log.i(TAG, "Click")
-    }
+    override fun onItemClicked(item: Project, view: View?) =
+        (activity as ProjectActivity).showFragment(ProjectDetailFragment.create(item))
 }

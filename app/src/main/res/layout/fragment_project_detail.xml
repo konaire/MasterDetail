@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:indeterminateOnly="true"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="@dimen/project_logo_size"
+            android:layout_height="@dimen/project_logo_size"
+            android:layout_marginStart="@dimen/default_indent"
+            android:layout_marginTop="@dimen/default_indent"
+            android:contentDescription="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/DetailText"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="@dimen/big_text_size"
+            app:layout_constraintEnd_toStartOf="@+id/star"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintTop_toTopOf="@+id/image" />
+
+        <TextView
+            android:id="@+id/company"
+            style="@style/DetailText"
+            android:layout_marginTop="@dimen/small_indent"
+            app:layout_constraintEnd_toStartOf="@+id/star"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
+
+        <ImageView
+            android:id="@+id/star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_indent"
+            android:contentDescription="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/image" />
+
+        <TextView
+            android:id="@+id/createdDate"
+            style="@style/DetailText"
+            android:layout_marginTop="@dimen/default_indent"
+            android:drawablePadding="@dimen/small_indent"
+            android:drawableStart="@drawable/ic_create"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image" />
+
+        <TextView
+            android:id="@+id/dateRange"
+            style="@style/DetailText"
+            android:layout_marginTop="@dimen/small_indent"
+            android:drawablePadding="@dimen/small_indent"
+            android:drawableStart="@drawable/ic_date_range"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/createdDate" />
+
+        <TextView
+            android:id="@+id/tagsTitle"
+            style="@style/DetailText"
+            android:layout_marginTop="@dimen/default_indent"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/project_title_tags"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dateRange" />
+
+        <TextView
+            android:id="@+id/tags"
+            style="@style/DetailText"
+            android:layout_marginTop="@dimen/small_indent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tagsTitle" />
+
+        <TextView
+            android:id="@+id/descriptionTitle"
+            style="@style/DetailText"
+            android:layout_marginTop="@dimen/default_indent"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/project_title_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tags" />
+
+        <TextView
+            android:id="@+id/description"
+            style="@style/DetailText"
+            android:layout_marginBottom="@dimen/default_indent"
+            android:layout_marginTop="@dimen/small_indent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionTitle" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>

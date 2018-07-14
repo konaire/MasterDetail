@@ -13,7 +13,7 @@ import com.konaire.teamwork.R
 import com.konaire.teamwork.di.DaggerMockAppComponent
 import com.konaire.teamwork.espresso.RecyclerViewItemCountAssertion
 import com.konaire.teamwork.models.Project
-import com.konaire.teamwork.models.ProjectResponse
+import com.konaire.teamwork.models.ProjectsResponse
 import com.konaire.teamwork.network.Api
 
 import io.reactivex.Single
@@ -46,7 +46,7 @@ class ProjectActivityTest {
 
     @Test
     fun checkWhenEverythingIsFine() {
-        val networkResult = ProjectResponse("", listOf(
+        val networkResult = ProjectsResponse(listOf(
             Project(), Project(), Project(), Project(), Project(), Project()
         ).toMutableList())
 
@@ -65,7 +65,7 @@ class ProjectActivityTest {
         onView(withId(R.id.list)).check(RecyclerViewItemCountAssertion.withItemCount(0))
     }
 
-    private fun mockNetwork(response: ProjectResponse) {
+    private fun mockNetwork(response: ProjectsResponse) {
         `when`(api.getProjects()).thenReturn(Single.just(response))
     }
 }

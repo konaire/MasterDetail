@@ -1,6 +1,6 @@
 package com.konaire.teamwork.interactors.projects
 
-import com.konaire.teamwork.models.ProjectResponse
+import com.konaire.teamwork.models.ProjectsResponse
 import com.konaire.teamwork.network.Api
 
 import io.reactivex.Scheduler
@@ -15,11 +15,11 @@ import javax.inject.Inject
 interface ProjectsListInteractor {
     fun getProjects(
         uiScheduler: Scheduler = AndroidSchedulers.mainThread()
-    ): Single<ProjectResponse>
+    ): Single<ProjectsResponse>
 }
 
 class ProjectsListInteractorImpl @Inject constructor(
     private val api: Api
 ): ProjectsListInteractor {
-    override fun getProjects(uiScheduler: Scheduler): Single<ProjectResponse> = api.getProjects().observeOn(uiScheduler)
+    override fun getProjects(uiScheduler: Scheduler): Single<ProjectsResponse> = api.getProjects().observeOn(uiScheduler)
 }

@@ -1,6 +1,6 @@
 package com.konaire.teamwork.interactors.projects
 
-import com.konaire.teamwork.models.ProjectResponse
+import com.konaire.teamwork.models.ProjectsResponse
 import com.konaire.teamwork.network.Api
 
 import io.reactivex.Single
@@ -29,9 +29,9 @@ class ProjectsListInteractorTest {
 
     @Test
     fun isRequestFinishedWithoutErrors() {
-        mockNetwork(ProjectResponse("", ArrayList()))
+        mockNetwork(ProjectsResponse(ArrayList()))
 
-        val subscriber = TestSubscriber.create<ProjectResponse>()
+        val subscriber = TestSubscriber.create<ProjectsResponse>()
         interactor.getProjects(scheduler).toFlowable().subscribe(subscriber)
         scheduler.advanceTimeBy(2, TimeUnit.SECONDS)
         scheduler.triggerActions()
@@ -39,7 +39,7 @@ class ProjectsListInteractorTest {
         subscriber.assertValue { response -> response.projects.isEmpty() }
     }
 
-    private fun mockNetwork(response: ProjectResponse) {
+    private fun mockNetwork(response: ProjectsResponse) {
         `when`(api.getProjects()).thenReturn(Single.just(response))
     }
 }

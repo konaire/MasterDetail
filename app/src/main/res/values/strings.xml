@@ -6,5 +6,7 @@
     <string name="network_error">Something went wrong</string>
 
     <!-- Projects -->
-    <string name="project_item_created">Created: %s</string>
+    <string name="project_title_description">Description:</string>
+    <string name="project_title_tags">Tags:</string>
+    <string name="project_date_range">%1$s - %2$s</string>
 </resources>

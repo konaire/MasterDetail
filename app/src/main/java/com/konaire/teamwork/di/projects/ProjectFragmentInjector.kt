@@ -1,5 +1,6 @@
 package com.konaire.teamwork.di.projects
 
+import com.konaire.teamwork.ui.projects.ProjectDetailFragment
 import com.konaire.teamwork.ui.projects.ProjectsListFragment
 
 import dagger.Module
@@ -12,4 +13,7 @@ import dagger.android.ContributesAndroidInjector
 interface ProjectFragmentInjector {
     @ContributesAndroidInjector(modules = [ProjectsListModule::class])
     fun provideProjectsListFragment(): ProjectsListFragment
+
+    @ContributesAndroidInjector(modules = [ProjectDetailModule::class])
+    fun provideProjectDetailFragment(): ProjectDetailFragment
 }

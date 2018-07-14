@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 
 import com.konaire.teamwork.R
 import com.konaire.teamwork.models.Project
@@ -27,12 +29,12 @@ class ProjectDelegateAdapter(
         fun bind(project: Project)  = with(itemView) {
             val image = findViewById<ImageView>(R.id.image)
             val name = findViewById<TextView>(R.id.name)
-            val date = findViewById<TextView>(R.id.date)
+            val description = findViewById<TextView>(R.id.description)
 
-            Glide.with(this).load(project.logo).into(image)
+            Glide.with(this).load(project.logo).apply(RequestOptions().placeholder(android.R.color.darker_gray)).into(image)
 
             name.text = project.name
-            date.text = context.getString(R.string.project_item_created, project.formattedCreatedDate())
+            description.text = project.description
 
             setOnClickListener { listener.onItemClicked(project, this) }
         }
