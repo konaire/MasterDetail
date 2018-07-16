@@ -21,10 +21,21 @@ android {
     }
 
     buildTypes {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("api.properties").newDataInputStream())
+
+        debug {
+            buildConfigField "String", "BASE_URL", properties.getProperty('url')
+            buildConfigField "String", "API_TOKEN", properties.getProperty('token')
+        }
+
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "BASE_URL", properties.getProperty('url')
+            buildConfigField "String", "API_TOKEN", properties.getProperty('token')
         }
     }
 }
